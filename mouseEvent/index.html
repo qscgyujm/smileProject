@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+</head>
+<body>
+  <div class="show">
+    <input type="checkbox" name="" id="screen">
+    <label for="screen">screen</label>
+    <input type="checkbox" name="" id="client">
+    <label for="client">client</label>
+    <input type="checkbox" name="" id="e">
+    <label for="e">e</label>
+    <input type="checkbox" name="" id="offset">
+    <label for="offset">offset</label>
+    <input type="checkbox" name="" id="page">
+    <label for="page">page</label>
+    <input type="checkbox" name="" id="movement">
+    <label for="movement">movement</label>
+  </div>
+  <div class="mouse">
+  </div>
+  <div class="aa">
+    width:200px<br>
+    height:200px<br>
+    top:300px<br>
+    left: 300px<br>
+  </div>
+  <div class="bb">
+      width:100px<br>
+      height:100px<br>
+      top:100px<br>
+      left: 200px<br>
+    </div>
+    <div class="cc">
+      width:300px<br>
+      height:300px<br>
+      top:300px<br>
+      left: 800px<br>
+    </div>
+  <script>
+    const show = document.querySelector('.show')
+    const mouse = document.querySelector('.mouse')
+    const checkboxs = document.querySelectorAll('input[type=checkbox]')
+
+    function getMouseEvent(e){
+      const inners=[]
+      checkboxs.forEach((checkbox, i) => {
+        if(checkbox.id == 'screen' && checkbox.checked == true){
+          inners.push(`
+            <p>screenX:${e.screenX}</p>
+            <p>screenY:${e.screenY}</p>
+          `)
+        }
+        if(checkbox.id == 'client' && checkbox.checked == true){
+          inners.push( `
+            <p>clientX:${e.clientX}</p>
+            <p>clientY:${e.clientY}</p>
+          `)
+        }
+        if(checkbox.id == 'e' && checkbox.checked == true){
+          inners.push( `
+            <p>x:${e.x}</p>
+            <p>y:${e.y}</p>
+          `)
+        }
+        if(checkbox.id == 'offset' && checkbox.checked == true){
+          inners.push( `
+            <p>target:tagName=>${e.target.tagName}<p>
+            <p>offsetX:${e.offsetX}</p>
+            <p>offsetY:${e.offsetY}</p>
+          `)
+        }
+        if(checkbox.id == 'page' && checkbox.checked == true){
+          inners.push( `
+            <p>scrollX:${window.scrollX}</p>
+            <p>scrollY:${window.scrollY}</p>
+            <p>pageX:${e.pageX}</p>
+            <p>pageY:${e.pageY}</p>
+          `)
+        }
+        if(checkbox.id == 'movement' && checkbox.checked == true){
+          inners.push( `
+            <p>movementX:${e.movementX}</p>
+            <p>movementY:${e.movementY}</p>
+          `)
+        }
+      })
+      mouse.innerHTML = inners.map(inner => {
+        return inner
+      }).join('')
+
+      mouse.style.left = e.pageX + 5 +'px'
+      mouse.style.top = e.pageY + 5 +'px'
+    }
+
+    
+
+    window.addEventListener('mousemove', getMouseEvent)
+  </script>
+  <style>
+    body{
+      background-image: linear-gradient(90deg, transparent 99px, #faa 99px),
+                        linear-gradient( 0deg, transparent 99px, #faa 99px);
+      background-size: 100px 100px;
+      /* background-repeat: repeat-x; */
+      margin: 0;
+      padding: 0;
+      overflow: auto;
+      position: relative;
+
+      width: 2000px;
+      height: 2000px;
+    }
+    h1{
+      margin-top: 0;
+    }
+    h1~p{
+      margin: 0;
+    }
+    .show{
+      padding: 0;
+    }
+    .mouse{
+      /* height: 500px;
+      width: 100px; */
+      background-color:rgba(60, 60, 238, 0.3);
+      position: absolute;
+      z-index: 1;
+    }
+    .aa{
+      width: 200px;
+      height: 200px;
+      position: absolute;
+      top: 400px;
+      left: 400px;
+      background: #ccc;
+    }
+    .bb{
+      width: 100px;
+      height: 100px;
+      position: absolute;
+      top: 100px;
+      left: 300px;
+      background: #f00;
+    }
+    .cc{
+      width: 300px;
+      height: 300px;
+      position: absolute;
+      top: 300px;
+      left: 800px;
+      background: #acc;
+    }
+
+  </style>
+</body>
+</html>

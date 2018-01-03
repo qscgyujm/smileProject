@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+</head>
+<body>
+  <div class="show">
+  </div>
+  <script>
+    const show = document.querySelector('.show')
+
+    function getMouseEvent(e){
+      show.innerHTML=`
+        <h1>screenX,Y</h1>
+        <p>screenX:${e.screenX}</p>
+        <p>screenY:${e.screenY}</p>
+        <h1>clientX,Y</h1>
+        <p>clientX:${e.clientX}</p>
+        <p>clientY:${e.clientY}</p>
+        <h1>X,Y</h1>
+        <p>x:${e.x}</p>
+        <p>y:${e.y}</p>
+        <h1>offsetX,Y</h1>
+        <p>offsetParent:${e.target.tagName}<p>
+        <p>offsetX:${e.offsetX}</p>
+        <p>offsetY:${e.offsetY}</p>
+        <h1>pageX,Y</h1>
+        <p>pageX:${e.pageX}</p>
+        <p>pageY:${e.pageY}</p>
+        <h1>movementX,Y</h1>
+        <p>movementX:${e.movementX}</p>
+        <p>movementY:${e.movementY}</p>
+      `
+    }
+
+    window.addEventListener('mousemove', getMouseEvent)
+  </script>
+  <style>
+    body{
+    }
+    h1~p{
+      margin-top: 0;
+      display: inline-flex;
+    }
+    .show{
+      margin: 0;
+      padding: 0;
+      background-color: #fcc;
+      opacity: .3;
+    }
+  </style>
+</body>
+</html>
